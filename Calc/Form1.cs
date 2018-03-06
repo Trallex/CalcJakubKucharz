@@ -136,25 +136,32 @@ namespace Calc
         {
             if (textEkran.Text != "")
             {
+                double temp;
                 if (labelTemp.Text.EndsWith("+"))
                 {
-                    CalcValue = CalcValue + double.Parse(textEkran.Text);
+                    if (Double.TryParse(textEkran.Text, out temp))
+                        CalcValue = CalcValue + temp;
                 }
                 else if (labelTemp.Text.EndsWith("-"))
                 {
-                    CalcValue = CalcValue - double.Parse(textEkran.Text);
+                    if (Double.TryParse(textEkran.Text, out temp))
+                        CalcValue = CalcValue - temp;
                 }
                 else if (labelTemp.Text.EndsWith("*"))
                 {
-                    CalcValue = CalcValue * double.Parse(textEkran.Text);
+                    if(Double.TryParse(textEkran.Text, out temp))
+                        CalcValue = CalcValue * temp;
                 }
-                else if (labelTemp.Text.EndsWith("/"))
+                else if (labelTemp.Text.EndsWith("/") && textEkran.Text != "0" && textEkran.Text != "0." && textEkran.Text != "-0." && textEkran.Text != "-0" && textEkran.Text != "-")
                 {
-                    if (textEkran.Text != "0" && textEkran.Text != "0." && textEkran.Text != "-0." && textEkran.Text != "-0")
-                        CalcValue = CalcValue / double.Parse(textEkran.Text);
-                    else
-                        labelTemp.Text = "Division by zero!";
+                 
+                    if (Double.TryParse(textEkran.Text, out temp))
+                        CalcValue = CalcValue / temp;
+                        
+  
                 }
+                else if(textEkran.Text == "0" || textEkran.Text == "0." || textEkran.Text == "-0." || textEkran.Text == "-0" || textEkran.Text == "-")
+                    labelTemp.Text = "Division by zero!";
             }
             textEkran.Text = CalcValue.ToString();
             if (labelTemp.Text != "Division by zero!")
