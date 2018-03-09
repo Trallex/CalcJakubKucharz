@@ -1,3 +1,3 @@
 JKCalc
 Kalkulator, zadanie domowe
-autor: Jakub Kucharz
+autor: Maciej Jurowski
